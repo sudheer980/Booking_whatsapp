@@ -17,6 +17,13 @@ import Notifications from './pages/Notifications';
 import Settings from './pages/Settings';
 import ActivityLogs from './pages/ActivityLogs';
 import VendorDashboard from './pages/VendorDashboard';
+import VendorShop from './pages/VendorShop';
+import VendorProducts from './pages/VendorProducts';
+import VendorOrders from './pages/VendorOrders';
+import VendorEarnings from './pages/VendorEarnings';
+import VendorPayouts from './pages/VendorPayouts';
+import VendorSettings from './pages/VendorSettings';
+import VendorSupport from './pages/VendorSupport';
 
 type AppView = 'landing' | 'admin-login' | 'vendor-login' | 'admin' | 'vendor';
 
@@ -75,7 +82,26 @@ function App() {
   };
 
   const renderVendorPage = () => {
-    return <VendorDashboard />;
+    switch (currentPage) {
+      case 'vendor-dashboard':
+        return <VendorDashboard />;
+      case 'vendor-shop':
+        return <VendorShop />;
+      case 'vendor-products':
+        return <VendorProducts />;
+      case 'vendor-orders':
+        return <VendorOrders />;
+      case 'vendor-earnings':
+        return <VendorEarnings />;
+      case 'vendor-payouts':
+        return <VendorPayouts />;
+      case 'vendor-settings':
+        return <VendorSettings />;
+      case 'vendor-support':
+        return <VendorSupport />;
+      default:
+        return <VendorDashboard />;
+    }
   };
 
   if (currentView === 'landing') {

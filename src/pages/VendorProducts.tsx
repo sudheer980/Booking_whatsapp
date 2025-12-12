@@ -2,12 +2,7 @@ import { useState, useEffect } from 'react';
 import { Plus, Edit, Trash2, Search } from 'lucide-react';
 import Button from '../components/common/Button';
 import Modal from '../components/common/Modal';
-import { createClient } from '@supabase/supabase-js';
-
-const supabase = createClient(
-  import.meta.env.VITE_SUPABASE_URL,
-  import.meta.env.VITE_SUPABASE_ANON_KEY
-);
+import { vendorProductsDetailed } from '../data/vendorMockData';
 
 interface Product {
   id: string;
@@ -60,15 +55,10 @@ export default function VendorProducts() {
 
   const fetchProducts = async () => {
     setLoading(true);
-    const { data, error } = await supabase
-      .from('products')
-      .select('*')
-      .order('created_at', { ascending: false });
-
-    if (!error && data) {
-      setProducts(data);
-    }
-    setLoading(false);
+    setTimeout(() => {
+      setProducts(vendorProductsDetailed);
+      setLoading(false);
+    }, 300);
   };
 
   const handleAddProduct = () => {
@@ -108,47 +98,33 @@ export default function VendorProducts() {
   const handleDeleteProduct = async (id: string) => {
     if (!confirm('Are you sure you want to delete this product?')) return;
 
-    const { error } = await supabase.from('products').delete().eq('id', id);
-
-    if (!error) {
-      await fetchProducts();
-    }
+    setProducts(products.filter(p => p.id !== id));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const productData = {
+    const productData: Product = {
+      id: isEditMode ? formData.id : Date.now().toString(),
       name: formData.name,
       description: formData.description,
       price: parseFloat(formData.price),
-      compare_at_price: formData.compare_at_price ? parseFloat(formData.compare_at_price) : null,
+      compare_at_price: formData.compare_at_price ? parseFloat(formData.compare_at_price) : undefined,
       sku: formData.sku,
       stock: parseInt(formData.stock),
       category: formData.category,
       images: formData.images.split(',').map(url => url.trim()).filter(url => url),
       status: formData.status,
-      vendor_id: '00000000-0000-0000-0000-000000000000',
+      created_at: new Date().toISOString(),
     };
 
     if (isEditMode) {
-      const { error } = await supabase
-        .from('products')
-        .update(productData)
-        .eq('id', formData.id);
-
-      if (!error) {
-        setIsModalOpen(false);
-        await fetchProducts();
-      }
+      setProducts(products.map(p => p.id === formData.id ? productData : p));
     } else {
-      const { error } = await supabase.from('products').insert([productData]);
-
-      if (!error) {
-        setIsModalOpen(false);
-        await fetchProducts();
-      }
+      setProducts([productData, ...products]);
     }
+
+    setIsModalOpen(false);
   };
 
   const filteredProducts = products.filter(

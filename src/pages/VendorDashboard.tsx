@@ -17,8 +17,8 @@ export default function VendorDashboard() {
               <p className="text-sm text-gray-600">Total Sales</p>
               <h3 className="text-2xl font-bold text-gray-900">${(vendorStats.totalSales / 1000).toFixed(1)}K</h3>
             </div>
-            <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center">
-              <DollarSign className="w-6 h-6 text-blue-600" />
+            <div className="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center">
+              <DollarSign className="w-6 h-6 text-green-600" />
             </div>
           </div>
           <p className="text-xs text-green-600">+12.5% from last month</p>
@@ -99,7 +99,7 @@ export default function VendorDashboard() {
               <XAxis dataKey="month" stroke="#6b7280" />
               <YAxis stroke="#6b7280" />
               <Tooltip />
-              <Line type="monotone" dataKey="sales" stroke="#3B82F6" strokeWidth={2} />
+              <Line type="monotone" dataKey="sales" stroke="#10B981" strokeWidth={2} />
             </LineChart>
           </ResponsiveContainer>
         </div>
@@ -132,7 +132,7 @@ export default function VendorDashboard() {
                   <p className="font-semibold text-gray-900">{order.total}</p>
                   <span className={`text-xs px-2 py-1 rounded-full ${
                     order.orderStatus === 'delivered' ? 'bg-green-100 text-green-800' :
-                    order.orderStatus === 'shipped' ? 'bg-blue-100 text-blue-800' :
+                    order.orderStatus === 'shipped' ? 'bg-emerald-100 text-emerald-800' :
                     'bg-yellow-100 text-yellow-800'
                   }`}>
                     {order.orderStatus}

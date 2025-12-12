@@ -37,15 +37,15 @@ export default function VendorLayout({ children, currentPage, onNavigate, onLogo
         />
       )}
       <div className={`h-screen w-64 bg-white border-r border-gray-200 fixed left-0 top-0 overflow-y-auto shadow-lg z-50 transform transition-transform duration-300 lg:transform-none ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}`}>
-        <div className="p-6 border-b border-gray-200 bg-gradient-to-br from-blue-500 to-blue-600">
+        <div className="p-6 border-b border-gray-200 bg-gradient-to-br from-green-500 to-emerald-600">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center shadow-lg">
-                <Store className="w-6 h-6 text-blue-600" />
+                <Store className="w-6 h-6 text-green-600" />
               </div>
               <div>
                 <h1 className="text-xl font-bold text-white">SparkGenX</h1>
-                <p className="text-xs text-blue-100">Vendor Portal</p>
+                <p className="text-xs text-green-100">Vendor Portal</p>
               </div>
             </div>
             <button
@@ -67,8 +67,8 @@ export default function VendorLayout({ children, currentPage, onNavigate, onLogo
                 onClick={() => handleNavigate(item.id)}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 ${
                   isActive
-                    ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-lg'
-                    : 'text-gray-600 hover:bg-gray-50 hover:text-blue-600'
+                    ? 'bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-lg'
+                    : 'text-gray-600 hover:bg-gray-50 hover:text-green-600'
                 }`}
               >
                 <Icon className="w-5 h-5" />
@@ -92,7 +92,7 @@ export default function VendorLayout({ children, currentPage, onNavigate, onLogo
           <div className="flex-1"></div>
 
           <div className="flex items-center gap-2 sm:gap-4">
-            <button className="relative p-2 text-gray-600 hover:text-blue-600 hover:bg-gray-50 rounded-xl">
+            <button className="relative p-2 text-gray-600 hover:text-green-600 hover:bg-gray-50 rounded-xl">
               <Bell className="w-5 h-5" />
               <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
             </button>
@@ -100,7 +100,7 @@ export default function VendorLayout({ children, currentPage, onNavigate, onLogo
             <div className="h-8 w-px bg-gray-200 hidden sm:block"></div>
 
             <div className="hidden md:flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
+              <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-lg">
                 <User className="w-5 h-5 text-white" />
               </div>
               <div className="text-sm">
@@ -109,7 +109,7 @@ export default function VendorLayout({ children, currentPage, onNavigate, onLogo
               </div>
             </div>
 
-            <div className="md:hidden w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
+            <div className="md:hidden w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-lg">
               <User className="w-5 h-5 text-white" />
             </div>
 
